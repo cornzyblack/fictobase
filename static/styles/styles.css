@@ -1,0 +1,121 @@
+
+    body,html{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #4155cd !important;
+    }
+
+    .searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 80px;
+    background-color: #353b48;
+    border-radius: 40px;
+    padding: 20px;
+    }
+
+    .search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    font-size: 30px;
+    font-family: 'Balsamiq Sans', cursive;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_input{
+    padding: 0 20px;
+    width: 450px;
+    caret-color:red;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_icon{
+    background: white;
+    color: #e74c3c;
+    }
+
+    .search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    /* color:white; */
+    text-decoration:none;
+    }
+
+.flex-container {
+  display: flex;
+  /* background-color: DodgerBlue; */
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;}
+
+.social-media {
+    font-size: 18px;
+}
+
+.main-container {
+    padding-top: 10%;
+    padding-bottom: 5%;
+}
+
+
+.nothing{
+  color: grey;
+  font-size: 20px;
+}
+
+
+.thumbnail{
+  border-radius: 5%;
+}
+
+#company-summary{
+  margin: 3%;
+}
+
+.about {
+  font-size: 20px;
+}
+
+#online-presence {
+
+    width:auto;
+    height:auto;
+    padding:2%;
+}
+
+#columns{
+  padding-bottom: 20%
+}
+
+ .left-div {
+margin-left:2%;
+padding-right: 4%;
+float:left;
+height:auto;
+width:auto;
+}
+
+.fa-exclamation-circle {
+   color:#ffbf00
+ }
+
+ .navbar a{
+    font-family: Verdana !important;
+}

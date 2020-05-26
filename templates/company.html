@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+
+{% block nav %}
+<div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+        </li>
+
+    </ul>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="main-container container">
+    <div class="card">
+        <div class="card-body">
+            <div id="company-summary">
+                <h1 style="font-size:50px">{{ data.name }}</h1>
+                <hr>
+                <div id='columns'>
+
+                    <div class='left-div'>
+                        <img src="{{ data.profile_image_url }}" alt="company-image" class='thumbnail'>
+                    </div>
+
+                    <div id='online-presence'>
+                        <p><i class="fas fa-globe social-media"></i>
+                            Website :
+                            <a href="{{ data.homepage_url }}" target="_blank">{{ data.homepage_url }}</a>
+                        </p>
+                        <p>{% if data.facebook_url %}
+                            <i class=" fab fa-facebook social-media"></i>
+                            Facebook:
+                            <a href="{{ data.facebook_url }}" target="_blank">{{ data.facebook_url }}</a>
+                            {% endif %}
+                        </p>
+
+                        <p>{% if data.twitter_url %}
+                            <i class=" fab fa-twitter social-media"></i>
+                            Twitter:
+                            <a href="{{ data.twitter_url }}" target="_blank">{{ data.twitter_url }}</a>
+                            {% endif %}
+                        </p>
+
+                        <p>{% if data.linkedin_url %}
+                            <i class=" fab fa-linkedin social-media"></i>
+                            Linkedin:
+                            <a href="{{ data.linkedin_url }}" target="_blank">{{ data.linkedin_url }}</a>
+                            {% endif %}
+                        </p>
+
+                    </div>
+                </div>
+                <hr>
+                <div class='about'>
+                    <h2>About</h2>
+                    <p>{{ data.short_description }}</p>
+
+                    {% if data.total_funding %}
+                    <p>Total Funding:
+                        &#36; <b>{{ data.total_funding }}</b> <i class="fas fa-exclamation-circle"
+                            title="This is a random fictitious Number"></i>
+                    </p>
+
+                    {% endif %}
+
+                    {% if data.total_employees %}
+                    <p>Total number of Employees: <b>{{ data.total_employees }}</b> Employees <i
+                            class="fas fa-exclamation-circle" title="This is a random fictitious Number"></i>
+                    </p>
+
+                    {% endif %}
+                </div>
+                <hr>
+
+                <div id='funding'>
+                    <h2>Funding Information</h2>
+                    {% if data.total_funding_dict %}
+
+                    <div id='funding-graph'>p</div>
+                    {% else %}
+                    <p class='nothing'> Nothing to show here</p>
+                    {% endif %}
+                </div>
+                <hr>
+
+                <div id='employees'>
+                    <h2>Employee Information</h2>
+                    {% if data.total_employees %}
+                    <div id='employee-graph'></div>
+
+                    {% else %}
+                    <p class='nothing'> Nothing to show here</p>
+
+                    {% endif %}
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script type="text/javascript">
+    // Create the chart
+    // Create the chart
+    Highcharts.chart('funding-graph', {
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Amount funded so far $(USD)'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: ['Funding'],
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: '$ (Thousands)',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' Thousands'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: false,
+            borderWidth: 1,
+            backgroundColor:
+                Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{% for key, value in data.total_funding_dict.items() %}
+            { name: 'Year {{ key }}', data: [{{ value }} ] }, {% endfor %}]
+        });
+
+
+    Highcharts.chart('employee-graph', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Employee Trend Along The Years'
+        },
+        xAxis: {
+            categories: [{% for key, value in data.total_employee_dict.items() %} {{ key }}, {% endfor %}]
+            },
+
+        yAxis: { title: { text: "Count" } },
+
+        credits: {
+        enabled: false
+    },
+
+        series: [{
+            name: 'Number of Employees',
+            data: [{% for key, value in data.total_employee_dict.items() %} {{ value }}, {% endfor %}]
+            }]
+        });
+
+</script>
+
+{% endblock %}

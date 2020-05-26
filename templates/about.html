@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block nav %}
+<div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home </a>
+        </li>
+
+        <li class="nav-item  active">
+            <a class="nav-link" href="/about">About<span class="sr-only">(current)</span></a>
+        </li>
+
+    </ul>
+</div>
+
+{% endblock %}
+
+{% block content %}
+<div class="main-container container">
+    <div class="card">
+        <div class="card-body">
+            <h2>About</h2>
+            <p class='about'>This is an attempt to recreate a simpler lighter clone of Crunchbase.
+                Some of the Data used is real data gotten from using the free curnchbase basic API, and the rest of the
+                data is randomly
+                generated
+            </p>
+            <p class='about'>Data such as employee and funding information is randomly generated, while data such as
+                description and
+                Social Media
+                details are gotten from Crunchbase
+            </p>
+
+            <p class='about'>This app is strictly for demo purposes. I will not be held liable for any misinformation
+                regarding any of the
+                companies searched for.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
